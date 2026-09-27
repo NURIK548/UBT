@@ -1,11 +1,10 @@
 workflows:
   build-apps:
-    name: Build APK and IPA for Flet
+    name: Build APK and IPA
     max_build_duration: 60
     instance_type: mac_mini_m1
     environment:
       flutter: stable
-      python: 3.10
     scripts:
       - name: Install Dependencies
         script: |
@@ -13,10 +12,10 @@ workflows:
           pip3 install flet
       - name: Build Android APK
         script: |
-          yes | flet build apk --module-name ubt_test
+          yes | flet build apk --module-name main
       - name: Build iOS IPA
         script: |
-          yes | flet build ipa --module-name ubt_test -- --no-codesign
+          yes | flet build ipa --module-name main
     artifacts:
       - build/apk/*.apk
       - build/ios/ipa/*.ipa
